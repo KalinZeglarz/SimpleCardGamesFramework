@@ -8,13 +8,13 @@ public class PlayerConfiguration : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isLocalPlayer)
+        if (isServer)
         {
-            GetComponentInChildren<Canvas>().enabled = true;
+            GetComponent<OponentController>().enabled = false;
         }
-        if (!isLocalPlayer)
+        if (isClient)
         {
-            GetComponent <PlayerController>().enabled = false ;
+            GetComponent<PlayerController>().enabled = false;
         }
     }
 }

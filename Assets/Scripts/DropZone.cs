@@ -1,11 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class DropZone : MonoBehaviour, IDropHandler
+public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+	public void OnPointerExit(PointerEventData p)
+	{
+
+	}
+
+	public void OnPointerEnter(PointerEventData p)
+	{
+
+	}
 	public void OnDrop(PointerEventData eventData)
 	{
-		DragAndDrop d = eventData.pointerDrag.GetComponent<DragAndDrop>();
+		PlayerController d = eventData.pointerDrag.GetComponent<PlayerController>();
 		if (d != null)
 		{
 			d.parentToReturnTo = this.transform;

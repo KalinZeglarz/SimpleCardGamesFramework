@@ -12,12 +12,12 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         this.transform.SetParent(this.transform.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
-
+    
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position;
-        this.transform.SetParent(parentToReturnTo);
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        //this.transform.SetParent(parentToReturnTo);
+        //GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
