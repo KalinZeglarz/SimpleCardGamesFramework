@@ -1,19 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerController : MonoBehaviour, IDragHandler
+public class PlayerController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    // Start is called before the first frame update
-    private void Start()
+
+    public Transform parentToReturnTo = null;
+    
+    public void OnBeginDrag(PointerEventData eventData)
     {
+        parentToReturnTo = this.transform.parent;
+        this.transform.SetParent(this.transform.parent.parent);
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
-    // Update is called once per frame
-    public void OnDrag(PointerEventData pt)
+    public void OnDrag(PointerEventData eventData)
     {
-        this.transform.position = pt.position;
+        this.transform.position = eventData.position;
+        this.transform.SetParent(parentToReturnTo);
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        this.transform.SetParent(parentToReturnTo);
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }

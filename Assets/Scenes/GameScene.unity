@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 49555967}
   - component: {fileID: 49555969}
   - component: {fileID: 49555968}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 171705565}
   - component: {fileID: 171705567}
   - component: {fileID: 171705566}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 192604297}
   - component: {fileID: 192604299}
   - component: {fileID: 192604298}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 453400400}
   - component: {fileID: 453400402}
   - component: {fileID: 453400401}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,8 +629,8 @@ MonoBehaviour:
   matchSize: 2
   isNetworkActive: 0
   matchMaker: {fileID: 0}
---- !u!4 &465192203
-Transform:
+--- !u!224 &465192203
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -641,8 +641,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &632399915
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +660,7 @@ GameObject:
   - component: {fileID: 632399918}
   - component: {fileID: 632399917}
   - component: {fileID: 632399916}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +765,7 @@ GameObject:
   - component: {fileID: 668521871}
   - component: {fileID: 668521873}
   - component: {fileID: 668521872}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Oponnent_info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +839,7 @@ GameObject:
   - component: {fileID: 992761136}
   - component: {fileID: 992761138}
   - component: {fileID: 992761137}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Moves_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1137143289}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +949,7 @@ GameObject:
   - component: {fileID: 1198078284}
   - component: {fileID: 1198078286}
   - component: {fileID: 1198078285}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Player_info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1023,7 @@ GameObject:
   - component: {fileID: 1301268204}
   - component: {fileID: 1301268206}
   - component: {fileID: 1301268205}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1099,7 @@ GameObject:
   - component: {fileID: 1387839645}
   - component: {fileID: 1387839644}
   - component: {fileID: 1387839647}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1240,7 @@ GameObject:
   - component: {fileID: 1419328232}
   - component: {fileID: 1419328234}
   - component: {fileID: 1419328233}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1307,7 +1312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741227948}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Opponent_cards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1345,7 +1350,7 @@ GameObject:
   - component: {fileID: 1821753053}
   - component: {fileID: 1821753052}
   - component: {fileID: 1821753051}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1480,7 +1485,7 @@ GameObject:
   - component: {fileID: 1980468181}
   - component: {fileID: 1980468180}
   - component: {fileID: 1980468179}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,7 +1667,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2071406300
 GameObject:
@@ -1673,7 +1678,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2071406301}
-  m_Layer: 5
+  - component: {fileID: 2071406302}
+  m_Layer: 0
   m_Name: Player_cards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1699,3 +1705,28 @@ RectTransform:
   m_AnchoredPosition: {x: -28.44, y: -350}
   m_SizeDelta: {x: 730.3352, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2071406302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071406300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
