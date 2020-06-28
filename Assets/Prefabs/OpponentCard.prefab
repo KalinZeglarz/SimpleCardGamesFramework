@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5717631458947941499}
   - component: {fileID: 2351131140095879932}
   - component: {fileID: 3369960788265700292}
-  - component: {fileID: 5494226085337250610}
+  - component: {fileID: 2875387007137415500}
+  - component: {fileID: -2129820230760782540}
   - component: {fileID: 6842014114345175847}
   - component: {fileID: 1586619390618409908}
   - component: {fileID: 3495582023991210384}
-  - component: {fileID: 2875387007137415500}
   m_Layer: 5
   m_Name: OpponentCard
   m_TagString: Untagged
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d18e6705524bf9448658c924c0beb5c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -112,8 +112,24 @@ MonoBehaviour:
     i14: 0
     i15: 0
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
---- !u!114 &5494226085337250610
+  m_LocalPlayerAuthority: 1
+--- !u!114 &2875387007137415500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8710931482275464348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb4181149aab5c42896bc5a26a3127c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentToReturnTo: {fileID: 0}
+  inBox: 0
+  front: {fileID: 21300000, guid: 79670fdd9653aa24d97a6726576d32e0, type: 3}
+  back: {fileID: 21300000, guid: 1d18e6705524bf9448658c924c0beb5c, type: 3}
+--- !u!114 &-2129820230760782540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,16 +195,3 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2875387007137415500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8710931482275464348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bb4181149aab5c42896bc5a26a3127c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentToReturnTo: {fileID: 0}

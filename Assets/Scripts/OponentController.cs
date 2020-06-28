@@ -5,6 +5,9 @@ public class OponentController : MonoBehaviour, IBeginDragHandler, IDragHandler,
 {
 
     public Transform parentToReturnTo = null;
+    public bool inBox = false;
+    public Sprite front;
+    public Sprite back;
 
     public void OnBeginDrag(PointerEventData eventData)
     {

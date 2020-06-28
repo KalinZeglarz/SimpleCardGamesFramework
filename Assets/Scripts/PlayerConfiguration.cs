@@ -2,19 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerConfiguration : NetworkBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        if (isServer)
+        if (isServer) GetComponent<OponentController>().enabled = false;
+
+
+        if (isClient) GetComponent<PlayerController>().enabled = false;
+
+    }
+
+    void Update()
+    {
+        if (isClient && GetComponent<PlayerController>() != null)
         {
-            GetComponent<OponentController>().enabled = false;
+            if (GetComponent<PlayerController>().inBox) GetComponent<Image>().sprite = GetComponent<PlayerController>().front;
+            else GetComponent<Image>().sprite = GetComponent<PlayerController>().back;
         }
-        if (isClient)
+        if (isServer && GetComponent<OponentController>() != null)
         {
-            GetComponent<PlayerController>().enabled = false;
+            if (GetComponent<OponentController>().inBox) GetComponent<Image>().sprite = GetComponent<OponentController>().front;
+            else GetComponent<Image>().sprite = GetComponent<OponentController>().back;
         }
     }
 }
