@@ -1,31 +1,68 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-
-
-public class PlayerController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+using Mirror;
+public class PlayerController : NetworkBehaviour
 {
+    public GameObject DropZone;
+    public GameObject EnemyDropZone;
+    public PlayerManager PlayerManager;
+    private bool isDragging = false;
+    private bool isOverDropZone = false;
+    private bool isDraggable = true;
+    private GameObject startParent;
+    private Vector2 startPosition;
 
-    public Transform parentToReturnTo = null;
-    public bool inBox = false;
-    public Sprite front;
-    public Sprite back;
-    public void OnBeginDrag(PointerEventData eventData)
+    private void Start()
     {
-        parentToReturnTo = this.transform.parent;
-        this.transform.SetParent(this.transform.parent.parent);
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        if (!hasAuthority)
+        {
+            isDraggable = false;
+        }
     }
-    
-    public void OnDrag(PointerEventData eventData)
+    void Update()
     {
-        this.transform.position = eventData.position;
-        //this.transform.SetParent(parentToReturnTo);
-        //GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if (isDragging)
+        {
+            transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            transform.SetParent(transform.parent.parent.transform, true);
+        }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        this.transform.SetParent(parentToReturnTo);
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        isOverDropZone = true;
+        DropZone = collision.gameObject;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isOverDropZone = false;
+    }
+
+    public void StartDrag()
+    {
+        if (!isDraggable) return;
+        startParent = transform.parent.gameObject;
+        startPosition = transform.position;
+        isDragging = true;
+    }
+
+    public void EndDrag()
+    {
+        if (!isDraggable) return;
+        isDragging = false;
+        if (isOverDropZone)
+        {
+            transform.SetParent(DropZone.transform, false);
+            isDraggable = false;
+            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+            PlayerManager = networkIdentity.GetComponent<PlayerManager>();
+            PlayerManager.PlayCard(gameObject);
+        }
+        else
+        {
+            transform.position = startPosition;
+            transform.SetParent(startParent.transform, false);
+        }
     }
 }
