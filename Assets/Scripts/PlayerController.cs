@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Mirror;
 public class PlayerController : NetworkBehaviour
 {
@@ -8,7 +8,7 @@ public class PlayerController : NetworkBehaviour
     public PlayerManager PlayerManager;
     private bool isDragging = false;
     private bool isOverDropZone = false;
-    private bool isDraggable = true;
+    public bool isDraggable = true;
     private GameObject startParent;
     private Vector2 startPosition;
 
@@ -18,25 +18,30 @@ public class PlayerController : NetworkBehaviour
         {
             isDraggable = false;
         }
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        PlayerManager = networkIdentity.GetComponent<PlayerManager>();
     }
     void Update()
     {
         if (isDragging)
         {
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            transform.SetParent(transform.parent.parent.transform, true);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isOverDropZone = true;
-        DropZone = collision.gameObject;
+        if (collision.gameObject.GetComponent<PlayerController>() == null && hasAuthority)
+        {
+            isOverDropZone = true;
+            PlayerManager.DropZone.GetComponent<Image>().color = new Color32(25, 176, 55, 100);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         isOverDropZone = false;
+        PlayerManager.DropZone.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
     }
 
     public void StartDrag()
@@ -44,19 +49,18 @@ public class PlayerController : NetworkBehaviour
         if (!isDraggable) return;
         startParent = transform.parent.gameObject;
         startPosition = transform.position;
+        transform.SetParent(transform.parent.parent.transform, true);
         isDragging = true;
     }
 
     public void EndDrag()
     {
+        PlayerManager.DropZone.GetComponent<Image>().color = new Color32(255, 255, 255, 100);
         if (!isDraggable) return;
         isDragging = false;
         if (isOverDropZone)
         {
-            transform.SetParent(DropZone.transform, false);
             isDraggable = false;
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            PlayerManager = networkIdentity.GetComponent<PlayerManager>();
             PlayerManager.PlayCard(gameObject);
         }
         else

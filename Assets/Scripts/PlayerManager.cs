@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 public class PlayerManager : NetworkBehaviour
 {
@@ -11,10 +11,9 @@ public class PlayerManager : NetworkBehaviour
     public GameObject DropZone;
     public GameObject OpponentDropZone;
 
-    List<GameObject> cards = new List<GameObject>();
+    public bool firstTurn;
 
-    [SyncVar]
-    int cardsPlayed = 0;
+    List<GameObject> cards = new List<GameObject>();
 
     public override void OnStartClient()
     {
@@ -34,37 +33,56 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDealCards()
     {
+        Debug.Log(firstTurn);
         for (int i = 0; i < 5; i++)
         {
             GameObject card = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0, 0), Quaternion.identity);
             NetworkServer.Spawn(card, connectionToClient);
-            RpcShowCard(card);
+            RpcShowCard(card, false);
         }
     }
 
     public void PlayCard(GameObject card)
     {
         CmdPlayCard(card);
-        cardsPlayed++;
     }
 
     [Command]
     void CmdPlayCard(GameObject card)
     {
-        RpcShowCard(card);
+        RpcShowCard(card, true);
     }
 
     [ClientRpc]
-    void RpcShowCard(GameObject card)
+    void RpcShowCard(GameObject card, bool inBox)
     {
-        if (hasAuthority)
+        if (!inBox)
         {
-            card.transform.SetParent(PlayerArea.transform, false);
+            if (hasAuthority)
+            {
+                card.transform.SetParent(PlayerArea.transform, false);
+            }
+            else
+            {
+                card.transform.SetParent(EnemyArea.transform, false);
+                card.GetComponent<CardFlip>().Flip();
+            }
+            if (!firstTurn) PlayerArea.GetComponent<SyncScript>().enableCards(false);
         }
         else
         {
-            card.transform.SetParent(EnemyArea.transform, false);
-            card.GetComponent<CardFlip>().Flip();
+            
+            if (hasAuthority)
+            {
+                card.transform.SetParent(DropZone.transform, false);
+                PlayerArea.GetComponent<SyncScript>().enableCards(false);
+            }
+            else
+            {
+                card.transform.SetParent(OpponentDropZone.transform, false);
+                card.GetComponent<CardFlip>().Flip();
+                PlayerArea.GetComponent<SyncScript>().enableCards(true);
+            }
         }
     }
 }

@@ -4,9 +4,31 @@ using UnityEngine;
 using Mirror;
 public class NetworkManagerCore : NetworkManager
 {
-    private PlayerManager PlayerManager;
-    public override void OnClientConnect(NetworkConnection conn)
+    List<NetworkConnection> connections = new List<NetworkConnection>();
+
+    public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        base.OnClientConnect(conn);
+        base.OnServerAddPlayer(conn);
+        connections.Add(conn);
+        if(connections.Count == 2)
+        {
+            int random = Random.Range(0, 1);
+            if (random == 0)
+            {
+                connections[0].identity.GetComponent<PlayerManager>().firstTurn = true;
+                connections[1].identity.GetComponent<PlayerManager>().firstTurn = false;
+            }
+            else
+            {
+                connections[1].identity.GetComponent<PlayerManager>().firstTurn = true;
+                connections[0].identity.GetComponent<PlayerManager>().firstTurn = false;
+            }
+        }
+    }
+
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        connections.Clear();
     }
 }

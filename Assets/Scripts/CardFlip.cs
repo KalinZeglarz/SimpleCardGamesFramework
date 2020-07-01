@@ -7,18 +7,19 @@ public class CardFlip : MonoBehaviour
 {
     public Sprite CardFront;
     public Sprite CardBack;
+    public bool front = true;
 
     public void Flip()
     {
-        Sprite currentSprite = gameObject.GetComponent<Image>().sprite;
-
-        if (currentSprite == CardFront)
+        if (front)
         {
             gameObject.GetComponent<Image>().sprite = CardBack;
+            front = false;
         }
         else
         {
             gameObject.GetComponent<Image>().sprite = CardFront;
+            front = true;
         }
     }
 }

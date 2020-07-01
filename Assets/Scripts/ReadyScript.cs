@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Mirror;
+﻿using Mirror;
 
 public class ReadyScript : NetworkBehaviour
 {
@@ -11,5 +9,6 @@ public class ReadyScript : NetworkBehaviour
         NetworkIdentity networkIdentity = NetworkClient.connection.identity;
         PlayerManager = networkIdentity.GetComponent<PlayerManager>();
         PlayerManager.CmdDealCards();
+        gameObject.SetActive(false);
     }
 }
