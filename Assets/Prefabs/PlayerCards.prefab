@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 751377446813578620}
   - component: {fileID: -3023464560389593594}
   - component: {fileID: 1537239547446386269}
+  - component: {fileID: 6125050270180399233}
   m_Layer: 0
   m_Name: PlayerCards
   m_TagString: Untagged
@@ -163,3 +164,17 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &6125050270180399233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7933430529002461549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3475b9a257c21274fb3ab75e6ceab9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1

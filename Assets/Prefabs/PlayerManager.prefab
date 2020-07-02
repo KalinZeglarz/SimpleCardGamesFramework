@@ -56,7 +56,9 @@ MonoBehaviour:
     type: 3}
   OpponentDropZone: {fileID: 3663183477864656959, guid: 3a05bfc2a758cb24f9a78f37235b0b89,
     type: 3}
-  button: {fileID: 4375376191711421545, guid: 5d864b39baedebc4ba12404a8fb8ef21, type: 3}
+  RoundLabel: {fileID: 8571339454302708276, guid: 7f9fc44738c563d46b97499dc954de78,
+    type: 3}
+  firstTurn: 0
 --- !u!114 &-2835955202646398012
 MonoBehaviour:
   m_ObjectHideFlags: 0

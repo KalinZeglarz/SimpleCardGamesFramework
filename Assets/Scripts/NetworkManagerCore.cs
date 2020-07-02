@@ -12,8 +12,8 @@ public class NetworkManagerCore : NetworkManager
         connections.Add(conn);
         if(connections.Count == 2)
         {
-            int random = Random.Range(0, 1);
-            if (random == 0)
+            int random = Random.Range(0, 100);
+            if (random % 2 == 0)
             {
                 connections[0].identity.GetComponent<PlayerManager>().firstTurn = true;
                 connections[1].identity.GetComponent<PlayerManager>().firstTurn = false;

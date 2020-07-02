@@ -10,6 +10,7 @@ public class PlayerManager : NetworkBehaviour
     public GameObject EnemyArea;
     public GameObject DropZone;
     public GameObject OpponentDropZone;
+    public GameObject RoundLabel;
 
     public bool firstTurn;
 
@@ -22,6 +23,7 @@ public class PlayerManager : NetworkBehaviour
         EnemyArea = GameObject.Find("OpponentHand");
         DropZone = GameObject.Find("PlayerCards");
         OpponentDropZone = GameObject.Find("OpponentCards");
+        RoundLabel = GameObject.Find("RoundLabel");
     }
 
     [Server]
@@ -33,7 +35,6 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDealCards()
     {
-        Debug.Log(firstTurn);
         for (int i = 0; i < 5; i++)
         {
             GameObject card = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0, 0), Quaternion.identity);
@@ -67,21 +68,37 @@ public class PlayerManager : NetworkBehaviour
                 card.transform.SetParent(EnemyArea.transform, false);
                 card.GetComponent<CardFlip>().Flip();
             }
-            if (!firstTurn) PlayerArea.GetComponent<SyncScript>().enableCards(false);
+            Debug.Log(firstTurn);
+            if (!firstTurn)
+            {
+                PlayerArea.GetComponent<SyncScript>().enableCards(false);
+                RoundLabel.GetComponent<Text>().text = "Runda przeciwnika.";
+            }
+            else if (firstTurn) RoundLabel.GetComponent<Text>().text = "Twoja kolej!";
         }
         else
         {
-            
             if (hasAuthority)
             {
                 card.transform.SetParent(DropZone.transform, false);
                 PlayerArea.GetComponent<SyncScript>().enableCards(false);
+                DropZone.GetComponent<SyncScript>().cardsPlayed++;
+                RoundLabel.GetComponent<Text>().text = "Runda przeciwnika.";
             }
             else
             {
                 card.transform.SetParent(OpponentDropZone.transform, false);
                 card.GetComponent<CardFlip>().Flip();
                 PlayerArea.GetComponent<SyncScript>().enableCards(true);
+                RoundLabel.GetComponent<Text>().text = "Twoja kolej!";
+                OpponentDropZone.GetComponent<SyncScript>().cardsPlayed++;
+            }
+
+            if(DropZone.GetComponent<SyncScript>().cardsPlayed == 5 && OpponentDropZone.GetComponent<SyncScript>().cardsPlayed == 5)
+            {
+                RoundLabel.GetComponent<Text>().text = "Koniec gry.";
+                DropZone.GetComponent<SyncScript>().cardsPlayed = 0;
+                OpponentDropZone.GetComponent<SyncScript>().cardsPlayed = 0;
             }
         }
     }

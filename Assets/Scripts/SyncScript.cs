@@ -5,6 +5,7 @@ using Mirror;
 
 public class SyncScript : NetworkBehaviour
 {
+    public int cardsPlayed = 0;
     public void enableCards(bool yes)
     {
         if (!yes)
